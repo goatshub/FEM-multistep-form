@@ -2,15 +2,19 @@ import Image from "next/image";
 
 const Section5 = ({ header, info }: { header: string; info: string }) => {
   return (
-    <section className={`grid gap-5 h-full w-full place-items-center`}>
+    <section
+      className={`self-center grid gap-5 my-auto w-full place-items-center`}
+    >
       <Image
-        width={80}
-        height={80}
+        width={60}
+        height={60}
         src="/images/icon-thank-you.svg"
         alt="Thank you"
       />
-      <h1>{header}</h1>
-      <p>{info}</p>
+      <div className="text-center">
+        <h1>{header}</h1>
+        <p className="text-center text-lg max-w-lg">{info}</p>
+      </div>
     </section>
   );
 };

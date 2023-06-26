@@ -6,7 +6,7 @@ const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["400", "500", "700"] });
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${ubuntu.className}`}
+      className={`min-h-screen grid grid-cols-1 md:place-items-center ${ubuntu.className} relative`}
     >
       <MainForm />
     </main>

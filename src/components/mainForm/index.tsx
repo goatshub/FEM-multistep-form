@@ -8,6 +8,7 @@ import Section2 from "../sections/Section2";
 import Section3 from "../sections/Section3";
 import Section4 from "../sections/Section4";
 import Section5 from "../sections/Section5";
+import Sidebar from "../sidebar";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -53,7 +54,7 @@ const MainForm = () => {
   });
 
   const onsubmit: SubmitHandler<FormData> = (data) => {
-    console.log("submit");
+    console.log("submit: ");
     console.log(JSON.stringify(data));
   };
 
@@ -67,38 +68,40 @@ const MainForm = () => {
     }
   };
 
-  // console.log(watch());
-  console.log(methods.formState.errors);
-  console.log(methods.formState.isValid);
-  console.log(step);
   return (
-    <div className="w-full">
-      <div className="sideBar">
-        <h2>Step {stepInfo?.[step - 1]?.stepNo}</h2>
-        <h3>{stepInfo?.[step - 1]?.stepTitle}</h3>
-      </div>
-      <FormProvider {...methods}>
-        <form className="mainFormDiv" onSubmit={methods.handleSubmit(onsubmit)}>
-          {step < 5 && (
-            <section className="mb-8">
+    <FormProvider {...methods}>
+      <div className="w-full md:flex md:bg-white max-w-[65rem] md:rounded-3xl md:p-4 md:shadow-xl md:shadow-slate-400/20">
+        <Sidebar step={step} />
+        <form
+          className="bg-white m-5
+            max-md:mb-[90px] max-md:mt-[7.5rem] max-md:shadow-xl max-md:shadow-slate-400/20
+            min-h-[400px] flex flex-col
+            p-6 rounded-2xl md:m-auto
+            md:p-8 md:min-h-[630px]  md:justify-between 
+            
+          "
+          onSubmit={methods.handleSubmit(onsubmit)}
+        >
+          {step < 5 ? (
+            <section>
               <h1>{stepInfo?.[step - 1]?.header}</h1>
-              <p>{stepInfo?.[step - 1]?.info}</p>
+              <p className="text-[1.2rem] mb-6 md:mb-10">
+                {stepInfo?.[step - 1]?.info}
+              </p>
+
+              {/*section 1*/}
+              {step === 1 && <Section1 />}
+
+              {/*section 2*/}
+              {step === 2 && <Section2 />}
+
+              {/*section 3*/}
+              {step === 3 && <Section3 />}
+
+              {/*section 4*/}
+              {step === 4 && <Section4 setStep={setStep} />}
             </section>
-          )}
-          {/*section 1*/}
-          {step === 1 && <Section1 />}
-
-          {/*section 2*/}
-          {step === 2 && <Section2 />}
-
-          {/*section 3*/}
-          {step === 3 && <Section3 />}
-
-          {/*section 4*/}
-          {step === 4 && <Section4 setStep={setStep} />}
-
-          {/*section 5*/}
-          {step === 5 && (
+          ) : (
             <Section5
               header={stepInfo?.[step - 1]?.header}
               info={stepInfo?.[step - 1]?.info}
@@ -106,9 +109,17 @@ const MainForm = () => {
           )}
 
           {/*bottom section for buttons*/}
-          <section className={`flex justify-between ${step >= 5 && "hidden"}`}>
+          <section
+            className={`
+              ${step >= 5 && "hidden"} 
+              bg-white
+              max-md:absolute max-md:bottom-0 max-md:left-0 
+              max-md:w-screen max-md:p-4 
+              flex justify-between
+            `}
+          >
             <button
-              className={`pr-6 py-3 disabled:invisible font-medium hover:text-marine text-gray-500`}
+              className={`pr-6 py-3 disabled:invisible font-medium hover:text-marine text-gray-400`}
               onClick={() => handleButton(-1)}
               disabled={step <= 1 || step >= 5}
               type="button"
@@ -116,7 +127,9 @@ const MainForm = () => {
               Go Back
             </button>
             <button
-              className={`px-6 py-3 rounded-md text-blue-50 bg-marine hover:opacity-90 `}
+              className={`px-6 md:px-8 py-3 rounded-md text-white 
+                bg-marine ${step === 4 && "bg-indigo-600"}
+                hover:opacity-95 `}
               onClick={() => handleButton(1)}
               type={step > 4 ? "submit" : "button"}
             >
@@ -124,8 +137,8 @@ const MainForm = () => {
             </button>
           </section>
         </form>
-      </FormProvider>
-    </div>
+      </div>
+    </FormProvider>
   );
 };
 export default MainForm;
