@@ -128,7 +128,7 @@ const MainForm = () => {
             </button>
             <button
               className={`px-6 md:px-8 py-3 rounded-md text-white 
-                bg-marine ${step === 4 && "bg-indigo-600"}
+              nextButton ${step === 4 && "submit"}
                 hover:opacity-95 `}
               onClick={() => handleButton(1)}
               type={step > 4 ? "submit" : "button"}

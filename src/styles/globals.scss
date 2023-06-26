@@ -36,9 +36,9 @@
   .sidebarButton.active {
     @apply bg-lightBlue text-marine;
   }
-  // .nextButton {
-  //   @apply bg-marine;
-  // }
+  .nextButton {
+    @apply bg-marine;
+  }
   .nextButton.submit {
     @apply bg-indigo-600;
   }
