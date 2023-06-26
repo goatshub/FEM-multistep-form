@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-size: 16px;
+  background-color: hsl(206, 94%, 87%);
+}
+
+h1 {
+  @apply text-marine text-3xl font-bold mb-2;
+}
+
+p {
+  @apply text-gray-400;
+}
+
+label {
+  @apply text-marine;
+}
+
+.mainFormDiv {
+  @apply bg-white p-8 rounded-xl;
+}
+
+.formSection {
+  @apply flex flex-col gap-3;
+}
+
+.inputDiv {
+  @apply flex flex-col gap-2;
+  .labelDiv {
+    @apply flex justify-between;
+  }
+  input {
+    @apply cursor-pointer text-marine font-semibold p-3 px-4 outline rounded-md outline-1 outline-neutral-300 focus:outline-violet-800;
+  }
+  input.error {
+    @apply focus:outline-rose-700 focus-within:outline-rose-700;
+  }
+}
+p.error {
+  @apply text-rose-700;
+}
+
+.radioDiv {
+  @apply border rounded-lg border-neutral-300  hover:bg-gray-100;
+
+  label {
+    @apply w-full h-full cursor-pointer;
+    input {
+      @apply hidden;
+    }
+    .container {
+      @apply p-5 flex gap-5 md:flex-col items-start;
+    }
+  }
+}
+.radioDiv.checked {
+  @apply border-indigo-800;
+}
