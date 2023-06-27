@@ -5,8 +5,7 @@
 @layer base {
   html {
     font-size: 14px;
-    background-color: hsl(205, 100%, 97%);
-    // background-color: hsl(204, 39%, 66%);
+    background-color: #eef5ff;
   }
 
   h1 {
@@ -35,12 +34,6 @@
   }
   .sidebarButton.active {
     @apply bg-lightBlue text-marine;
-  }
-  .nextButton {
-    @apply bg-marine;
-  }
-  .nextButton.submit {
-    @apply bg-indigo-600;
   }
 }
 

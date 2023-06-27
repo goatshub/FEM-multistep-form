@@ -13,7 +13,7 @@ const CheckboxDiv = ({ title, info, name }: CheckboxType) => {
     <label
       className={`
       checkboxDiv ${checked} 
-      border border-neutral-300 rounded-lg px-4 py-3.5
+      border border-neutral-300 rounded-lg px-4 py-3.5 md:px-6 md:py-5
       flex justify-between items-center
       cursor-pointer group hover:border-indigo-600 transition-all
     `}

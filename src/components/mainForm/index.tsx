@@ -56,6 +56,7 @@ const MainForm = () => {
   const onsubmit: SubmitHandler<FormData> = (data) => {
     console.log("submit: ");
     console.log(JSON.stringify(data));
+    handleButton(1);
   };
 
   const handleButton = async (addStep: number) => {
@@ -76,8 +77,8 @@ const MainForm = () => {
           className="bg-white m-5
             max-md:mb-[90px] max-md:mt-[7.5rem] max-md:shadow-xl max-md:shadow-slate-400/20
             min-h-[400px] flex flex-col
-            p-6 rounded-2xl md:m-auto
-            md:p-8 md:min-h-[630px]  md:justify-between 
+            p-6 rounded-2xl md:grow
+            md:p-8 md:m-auto md:max-w-[35rem]  md:min-h-[40rem]  md:justify-between 
             
           "
           onSubmit={methods.handleSubmit(onsubmit)}
@@ -85,7 +86,7 @@ const MainForm = () => {
           {step < 5 ? (
             <section>
               <h1>{stepInfo?.[step - 1]?.header}</h1>
-              <p className="text-[1.2rem] mb-6 md:mb-10">
+              <p className="text-[1.2rem] md:text-lg mb-6 md:mb-10">
                 {stepInfo?.[step - 1]?.info}
               </p>
 
@@ -126,15 +127,26 @@ const MainForm = () => {
             >
               Go Back
             </button>
-            <button
-              className={`px-6 md:px-8 py-3 rounded-md text-white 
-              nextButton ${step === 4 && "submit"}
+
+            {step >= 4 ? (
+              <input
+                className={`px-6 md:px-8 py-3 rounded-md text-white 
+              bg-indigo-600 cursor-pointer
                 hover:opacity-95 `}
-              onClick={() => handleButton(1)}
-              type={step > 4 ? "submit" : "button"}
-            >
-              {step === 4 ? "Confirm" : "Next Step"}
-            </button>
+                type="submit"
+                value="Confirm"
+              />
+            ) : (
+              <button
+                className={`px-6 md:px-8 py-3 rounded-md text-white 
+              bg-marine
+                hover:opacity-95 `}
+                onClick={() => handleButton(1)}
+                type="button"
+              >
+                Next Step
+              </button>
+            )}
           </section>
         </form>
       </div>

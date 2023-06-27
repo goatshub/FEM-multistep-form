@@ -31,7 +31,7 @@ const Section4 = ({ setStep }: { setStep: SetStep }) => {
             ${price?.[plan]}/{price?.shortTerm}
           </h3>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 pt-2 md:pt-4">
           {inputInfo.addOns
             .filter((item) => watchObj[item.name])
             .map((item, i) => (
